@@ -1,0 +1,85 @@
+const input = document.getElementById("task-input");
+const addBtn = document.getElementById("add-task");
+const list = document.getElementById("task-list");
+const progressBar = document.getElementById("progress-bar");
+const progressText = document.getElementById("progress-text");
+
+// Load tasks from localStorage
+function loadTasks() {
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  list.innerHTML = "";
+  tasks.forEach((task, index) => {
+    const li = document.createElement("li");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = task.done;
+    checkbox.onchange = () => toggleTask(index);
+
+    const label = document.createElement("span");
+    label.textContent = task.text;
+
+    if (task.done) li.classList.add("done");
+
+    li.appendChild(checkbox);
+    li.appendChild(label);
+    list.appendChild(li);
+  });
+  updateProgress();
+}
+
+// Add new task
+function addTask() {
+  const text = input.value.trim();
+  if (!text) return;
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  tasks.push({ text, done: false });
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  input.value = "";
+  loadTasks();
+}
+
+// Toggle task completion
+function toggleTask(index) {
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  tasks[index].done = !tasks[index].done;
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  loadTasks();
+}
+
+// Update progress bar
+function updateProgress() {
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  const total = tasks.length;
+  const done = tasks.filter(t => t.done).length;
+  const percent = total ? Math.round((done / total) * 100) : 0;
+
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `${percent}% Complete`;
+}
+
+// Auto-reset tasks at midnight
+function resetAtMidnight() {
+  const now = new Date();
+  const millisUntilMidnight = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate() + 1,
+    0, 0, 0
+  ) - now;
+
+  setTimeout(() => {
+    localStorage.removeItem("tasks");
+    loadTasks();
+    resetAtMidnight(); // schedule next reset
+  }, millisUntilMidnight);
+}
+
+// Event listeners
+addBtn.addEventListener("click", addTask);
+input.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") addTask();
+});
+
+// Initialize
+loadTasks();
+resetAtMidnight();
