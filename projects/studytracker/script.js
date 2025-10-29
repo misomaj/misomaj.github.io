@@ -91,6 +91,70 @@ input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") addTask();
 });
 
+// ---------- Pomodoro Timer ----------
+let timerDuration = 25 * 60; // 25 minutes in seconds
+let timerRemaining = timerDuration;
+let timerInterval = null;
+let isRunning = false;
+let isFocusMode = true;
+
+const timerDisplay = document.getElementById("timer-display");
+const startBtn = document.getElementById("start-timer");
+const pauseBtn = document.getElementById("pause-timer");
+const resetBtn = document.getElementById("reset-timer");
+const timerMode = document.getElementById("timer-mode");
+
+function updateTimerDisplay() {
+  const minutes = Math.floor(timerRemaining / 60).toString().padStart(2, '0');
+  const seconds = (timerRemaining % 60).toString().padStart(2, '0');
+  timerDisplay.textContent = `${minutes}:${seconds}`;
+}
+
+function startTimer() {
+  if (isRunning) return;
+  isRunning = true;
+  timerInterval = setInterval(() => {
+    timerRemaining--;
+    updateTimerDisplay();
+
+    if (timerRemaining <= 0) {
+      clearInterval(timerInterval);
+      isRunning = false;
+      switchMode();
+    }
+  }, 1000);
+}
+
+function pauseTimer() {
+  clearInterval(timerInterval);
+  isRunning = false;
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  isRunning = false;
+  timerRemaining = isFocusMode ? 25 * 60 : 5 * 60;
+  updateTimerDisplay();
+}
+
+function switchMode() {
+  isFocusMode = !isFocusMode;
+  timerRemaining = isFocusMode ? 25 * 60 : 5 * 60;
+  timerMode.textContent = `Mode: ${isFocusMode ? "Focus" : "Break"}`;
+  alert(isFocusMode ? "Focus session started! 💪" : "Break time! ☕");
+  updateTimerDisplay();
+  startTimer();
+}
+
+// Button handlers
+startBtn.addEventListener("click", startTimer);
+pauseBtn.addEventListener("click", pauseTimer);
+resetBtn.addEventListener("click", resetTimer);
+
+// Initialize display
+updateTimerDisplay();
+
+
 // Initialize
 loadTasks();
 resetAtMidnight();
