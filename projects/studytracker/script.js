@@ -92,7 +92,7 @@ input.addEventListener("keypress", (e) => {
 });
 
 // ---------- Pomodoro Timer ----------
-let timerDuration = 25 * 60; // 25 minutes in seconds
+let timerDuration = 45 * 60; // 25 minutes in seconds
 let timerRemaining = timerDuration;
 let timerInterval = null;
 let isRunning = false;
