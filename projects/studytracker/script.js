@@ -58,21 +58,32 @@ function updateProgress() {
 }
 
 // Auto-reset tasks at midnight
-function resetAtMidnight() {
+function resetIfNewDay() {
+  const today = new Date().toDateString();
+  const lastDate = localStorage.getItem("lastResetDate");
+
+  if (lastDate !== today) {
+    localStorage.removeItem("tasks");
+    localStorage.setItem("lastResetDate", today);
+  }
+}
+function scheduleMidnightCheck() {
   const now = new Date();
-  const millisUntilMidnight = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    now.getDate() + 1,
-    0, 0, 0
+  const msUntilMidnight = new Date(
+    now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 1
   ) - now;
 
   setTimeout(() => {
-    localStorage.removeItem("tasks");
+    resetIfNewDay();
     loadTasks();
-    resetAtMidnight(); // schedule next reset
-  }, millisUntilMidnight);
+    scheduleMidnightCheck();
+  }, msUntilMidnight);
 }
+
+resetIfNewDay();
+loadTasks();
+scheduleMidnightCheck();
+
 
 // Event listeners
 addBtn.addEventListener("click", addTask);
