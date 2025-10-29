@@ -133,15 +133,15 @@ function pauseTimer() {
 function resetTimer() {
   clearInterval(timerInterval);
   isRunning = false;
-  timerRemaining = isFocusMode ? 25 * 60 : 5 * 60;
+  timerRemaining = isFocusMode ? 45 * 60 : 5 * 60;
   updateTimerDisplay();
 }
 
 function switchMode() {
   isFocusMode = !isFocusMode;
-  timerRemaining = isFocusMode ? 25 * 60 : 5 * 60;
+  timerRemaining = isFocusMode ? 45 * 60 : 5 * 60;
   timerMode.textContent = `Mode: ${isFocusMode ? "Focus" : "Break"}`;
-  alert(isFocusMode ? "Focus session started! 💪" : "Break time! ☕");
+  alert(isFocusMode ? "Focus session started!" : "Break time!");
   updateTimerDisplay();
   startTimer();
 }
