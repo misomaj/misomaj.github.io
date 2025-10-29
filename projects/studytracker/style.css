@@ -133,3 +133,41 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
+/* Pomodoro Timer Section */
+.pomodoro {
+  margin-top: 25px;
+  background: #f8f8f8;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+#timer-display {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 10px 0;
+  color: #333;
+}
+
+.timer-controls button {
+  margin: 5px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  background: #4CAF50;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.timer-controls button:hover {
+  background: #45a049;
+}
+
+#timer-mode {
+  margin-top: 8px;
+  color: #777;
+  font-size: 0.9rem;
+}
