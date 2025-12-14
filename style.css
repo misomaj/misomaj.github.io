@@ -35,38 +35,6 @@ body {
   display: inline-block;
 }
 
-/* Skills Section */
-#skills {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-#skills h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.skills-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 20px;
-}
-
-.skill {
-  text-align: center;
-  font-size: 1.1rem;
-}
-
-.skill i {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  display: block;
-  color: #1abc9c;
-}
 
 
 /* Header */
@@ -109,13 +77,6 @@ h2 {
   display: inline-block;
   padding-bottom: 5px;
 }
-
-.skill img {
-  width: 24px;
-  height: 24px;
-  margin-right: 8px;
-  vertical-align: middle;
-}
 /* Grid for skills */
 .skills-grid {
   display: grid;
@@ -143,11 +104,12 @@ h2 {
   color: var(--accent-color);
 }
 
-/* SVG logo sizing */
 .skill img {
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }
+
 
 /* Optional hover effect */
 .skill:hover {
