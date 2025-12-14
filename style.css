@@ -110,6 +110,14 @@ h2 {
   padding-bottom: 5px;
 }
 
+.skill img {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+
 /* Footer */
 footer {
   text-align: center;
