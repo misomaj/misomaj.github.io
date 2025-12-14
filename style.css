@@ -116,6 +116,45 @@ h2 {
   margin-right: 8px;
   vertical-align: middle;
 }
+/* Grid for skills */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+/* Style each skill item */
+.skill {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* FontAwesome icon sizing */
+.skill i {
+  font-size: 2.2rem;
+  color: var(--accent-color);
+}
+
+/* SVG logo sizing */
+.skill img {
+  width: 48px;
+  height: 48px;
+}
+
+/* Optional hover effect */
+.skill:hover {
+  transform: scale(1.08);
+  transition: transform 0.2s ease-in-out;
+}
+
 
 
 /* Footer */
