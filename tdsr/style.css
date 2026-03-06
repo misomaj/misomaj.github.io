@@ -17,9 +17,9 @@ body {
 }
 
 .hero .profile-pic {
-  width: 768px;
-  height: 247px;
-  border-radius: 100%;
+  width: 100%;
+  height: auto;
+  border-radius: 200%;
   border: 0px solid black;
   margin-bottom: 20px;
 }
