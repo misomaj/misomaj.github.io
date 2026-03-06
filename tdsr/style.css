@@ -19,8 +19,8 @@ body {
 .hero .profile-pic {
   width: 768px;
   height: 247px;
-  border-radius: 50%;
-  border: 1px solid black;
+  border-radius: 100%;
+  border: 0px solid black;
   margin-bottom: 20px;
 }
 
@@ -39,8 +39,8 @@ body {
 
 /* Header */
 header {
-  background: #ffffff;
-  color: white;
+  background: #000000;
+  color: black;
   padding: 40px 0;
   text-align: center;
 }
@@ -51,7 +51,7 @@ header h1 {
 }
 
 nav a {
-  color: #ecf0f1;
+  color: #ffffff;
   margin: 0 15px;
   text-decoration: none;
   font-weight: bold;
@@ -123,7 +123,7 @@ h2 {
 footer {
   text-align: center;
   padding: 20px 0;
-  background: #ffffff;
-  color: white;
+  background: #000000;
+  color: black;
   margin-top: 40px;
 }
